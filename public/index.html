@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula Online</title>
+    <link rel="stylesheet" href="/public/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="logo">Aula Online</div>
+      <nav class="main-nav">
+        <button data-section="dashboard" class="nav-btn active">Dashboard</button>
+        <button data-section="courses" class="nav-btn">Cursos</button>
+        <button data-section="schedule" class="nav-btn">Agenda</button>
+        <button data-section="progress" class="nav-btn">Mi progreso</button>
+      </nav>
+      <div class="session-info">
+        <div class="auth-actions" id="authActions">
+          <button id="showLogin">Ingresar</button>
+          <button id="showRegister">Registrarse</button>
+        </div>
+        <div class="user-info hidden" id="userInfo">
+          <span id="userGreeting"></span>
+          <button id="logoutBtn">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="auth" class="view">
+        <div class="auth-grid">
+          <article class="card">
+            <h2>Iniciar sesión</h2>
+            <form id="loginForm">
+              <label for="loginEmail">Correo electrónico</label>
+              <input type="email" id="loginEmail" required />
+
+              <label for="loginPassword">Contraseña</label>
+              <input type="password" id="loginPassword" required />
+
+              <button type="submit">Ingresar</button>
+            </form>
+            <p class="form-message" id="loginMessage"></p>
+          </article>
+
+          <article class="card">
+            <h2>Registro</h2>
+            <form id="registerForm">
+              <label for="registerName">Nombre completo</label>
+              <input type="text" id="registerName" required />
+
+              <label for="registerEmail">Correo electrónico</label>
+              <input type="email" id="registerEmail" required />
+
+              <label for="registerPassword">Contraseña</label>
+              <input type="password" id="registerPassword" required />
+
+              <label for="registerRole">Rol</label>
+              <select id="registerRole" required>
+                <option value="ESTUDIANTE">Estudiante</option>
+                <option value="DOCENTE">Docente</option>
+              </select>
+
+              <button type="submit">Crear cuenta</button>
+            </form>
+            <p class="form-message" id="registerMessage"></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="dashboard" class="view hidden">
+        <h1>Panel general</h1>
+        <p class="subtitle">Resumen rápido de tu actividad en Aula Online.</p>
+        <div class="dashboard-grid" id="dashboardSummary"></div>
+      </section>
+
+      <section id="courses" class="view hidden">
+        <header class="section-header">
+          <div>
+            <h1>Cursos</h1>
+            <p class="subtitle">Explorá los cursos disponibles o gestioná los tuyos.</p>
+          </div>
+          <button id="refreshCourses" class="secondary">Actualizar</button>
+        </header>
+
+        <div id="docenteCourseForm" class="card hidden">
+          <h2>Crear nuevo curso</h2>
+          <form id="courseForm">
+            <label for="courseTitle">Título</label>
+            <input type="text" id="courseTitle" required />
+
+            <label for="courseDescription">Descripción</label>
+            <textarea id="courseDescription" required></textarea>
+
+            <label for="courseLevel">Nivel</label>
+            <select id="courseLevel" required>
+              <option value="Inicial">Inicial</option>
+              <option value="Intermedio">Intermedio</option>
+              <option value="Avanzado">Avanzado</option>
+            </select>
+
+            <button type="submit">Guardar curso</button>
+            <p class="form-message" id="courseMessage"></p>
+          </form>
+        </div>
+
+        <div id="coursesGrid" class="cards-grid"></div>
+        <div id="courseDetail" class="card hidden"></div>
+      </section>
+
+      <section id="schedule" class="view hidden">
+        <header class="section-header">
+          <div>
+            <h1>Agenda</h1>
+            <p class="subtitle">Próximas clases y eventos programados.</p>
+          </div>
+          <button id="refreshSchedule" class="secondary">Actualizar</button>
+        </header>
+        <div id="docenteScheduleForm" class="card hidden">
+          <h2>Crear evento</h2>
+          <form id="scheduleForm">
+            <label for="scheduleCourse">Curso</label>
+            <select id="scheduleCourse"></select>
+
+            <label for="scheduleTitle">Título</label>
+            <input type="text" id="scheduleTitle" required />
+
+            <label for="scheduleDescription">Descripción</label>
+            <textarea id="scheduleDescription"></textarea>
+
+            <label for="scheduleStart">Inicio</label>
+            <input type="datetime-local" id="scheduleStart" required />
+
+            <label for="scheduleEnd">Fin</label>
+            <input type="datetime-local" id="scheduleEnd" required />
+
+            <button type="submit">Guardar evento</button>
+            <p class="form-message" id="scheduleMessage"></p>
+          </form>
+        </div>
+        <div id="scheduleGrid" class="cards-grid"></div>
+      </section>
+
+      <section id="progress" class="view hidden">
+        <h1>Mi progreso</h1>
+        <p class="subtitle">Seguimiento de módulos completados por curso.</p>
+        <div id="progressContainer" class="card"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Aula Online. Plataforma educativa colaborativa.</p>
+    </footer>
+
+    <script src="/public/app.js"></script>
+  </body>
+</html>
